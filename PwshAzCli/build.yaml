@@ -1,0 +1,25 @@
+name: PwshCoreAzCli-v0.$(date:yy)$(DayOfYear).$(rev:.r)
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: VersionExtractor@5
+  name: build
+  displayName: 'Version extractor digit'
+  inputs:
+    stringToAnalyze: '$(Build.BuildNumber)'
+
+- task: Docker@2
+  displayName: 'Build and Push hub.docker.com'
+  inputs:
+    containerRegistry: 'docker-lturmel'
+    repository: 'lturmel/PwshCoreAzCli'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
+    tags: |
+      $(build.fullVersion)
+      latest
