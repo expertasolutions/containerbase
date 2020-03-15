@@ -14,9 +14,18 @@ steps:
     stringToAnalyze: '$(Build.BuildNumber)'
 
 - task: Docker@2
-  displayName: 'Build and Push Container'
+  displayName: 'Build and Push to ExpertaMain Registry'
   inputs:
     containerRegistry: 'ExpertaMainRegistry'
+    repository: '$(Build.SourceBranchName).PwshCoreAzCli'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
+    tags: '$(build.fullVersion)'
+
+- task: Docker@2
+  displayName: 'Build and Push lturmel docker hub'
+  inputs:
+    containerRegistry: 'docker-lturmel'
     repository: '$(Build.SourceBranchName).PwshCoreAzCli'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
