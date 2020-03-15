@@ -20,4 +20,6 @@ steps:
     repository: 'lturmel/PwshCoreAzCli'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
-    tags: '$(build.fullVersion)'
+    tags: |
+      $(build.fullVersion)
+      latest
