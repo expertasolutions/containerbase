@@ -1,8 +1,7 @@
-name: CI-PwshCoreAzCli-v0.$(date:yy)$(DayOfYear)$(rev:.r)
+name: CD-PwshCoreAzCli-v0.$(date:yy)$(DayOfYear)$(rev:.r)
 
 trigger:
 - master
-- Issue*
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -19,7 +18,7 @@ steps:
   inputs:
     containerRegistry: 'docker-lturmel'
     repository: 'lturmel/PwshCoreAzCli'
-    command: 'build'
+    command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
     tags: |
       $(build.fullVersion)
