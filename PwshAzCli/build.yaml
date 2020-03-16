@@ -18,7 +18,7 @@ steps:
   inputs:
     containerRegistry: 'docker-lturmel'
     repository: 'lturmel/PwshCoreAzCli'
-    command: 'buildAndPush'
+    command: 'build'
     Dockerfile: '**/Dockerfile'
     tags: |
       $(build.fullVersion)
