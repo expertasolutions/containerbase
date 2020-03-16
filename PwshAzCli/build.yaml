@@ -2,6 +2,7 @@ name: CI-PwshCoreAzCli-v0.$(date:yy)$(DayOfYear)$(rev:.r)
 
 trigger:
 - master
+- Issue*
 
 pool:
   vmImage: 'ubuntu-latest'
